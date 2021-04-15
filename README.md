@@ -15,6 +15,7 @@
 ### Association
 
 - has_many :products
+- has_many :orders
 
 
 ## products テーブル
@@ -33,32 +34,33 @@
 ### Association
 
 - belongs_to :user
-
+- has_one :order
 
 ## delivery_addresses テーブル
 
 | Column          | Type       | Options                        |
 | -------------   | ---------- | ------------------------------ |
 | post_code       | string     | null: false                    |
-| shipping_area_id| integer    | null: false, foreign_key: true |
+| shipping_area_id| integer    | null: false                    |
 | city            | string     | null: false                    |
 | home_number     | string     | null: false                    |
 | building_name   | string     |                                |
 | phone_number    | string     | null: false                    |
-
+| orders_id       | integer    | null: false, foreign_key: true |
 
 ### Association
 
+- belongs_to :order
 
 ## orders テーブル
 
 | Column          | Type       | Options                        |
 | -------------   | ---------- | ------------------------------ |
 | user_id         | integer    | null: false, foreign_key: true |
-| products_id     | integer    | null: false, foreign_key: true |
+| product_id      | integer    | null: false, foreign_key: true |
 
 ### Association
 
-has_one: delivery
+has_one: delivery_addresses
 belongs_to: user
 belongs_to: product
