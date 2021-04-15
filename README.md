@@ -46,7 +46,7 @@
 | home_number     | string     | null: false                    |
 | building_name   | string     |                                |
 | phone_number    | string     | null: false                    |
-| orders_id       | integer    | null: false, foreign_key: true |
+| order_id       | integer    | null: false, foreign_key: true |
 
 ### Association
 
@@ -61,6 +61,6 @@
 
 ### Association
 
-has_one: delivery_addresses
+has_one: delivery_address
 belongs_to: user
 belongs_to: product
