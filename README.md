@@ -14,11 +14,11 @@
 |  encrypted_password |  string |  null: false              |
 ### Association
 
-- has_many :products
+- has_many :items
 - has_many :orders
 
 
-## products テーブル
+## items テーブル
 
 |  Column           |  Type      |  options                       |
 |  ---------------- |  --------- |  -----------                   |
@@ -63,4 +63,4 @@
 
 has_one: delivery_address
 belongs_to: user
-belongs_to: product
+belongs_to: item
