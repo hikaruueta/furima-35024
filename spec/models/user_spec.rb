@@ -111,7 +111,7 @@ RSpec.describe User, type: :model do
       end
       it 'passwordは英語のみでは登録できない' do
         @user.password = 'test'
-        @user.password_confirmation = 'test'
+        @user.password_confirmation = 'testtest'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is invalid')
       end 
