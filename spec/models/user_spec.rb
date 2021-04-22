@@ -110,7 +110,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Birth date can't be blank")
       end
       it 'passwordは英語のみでは登録できない' do
-        @user.password = 'test'
+        @user.password = 'testtest'
         @user.password_confirmation = 'testtest'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is invalid')
