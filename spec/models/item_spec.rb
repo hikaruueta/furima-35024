@@ -49,7 +49,6 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Condition must be other than 1')
       end
-
       it 'shipping_cost_idが未選択（1）だと登録できない' do
         @item.shipping_cost_id = 1
         @item.valid?
@@ -83,6 +82,21 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price 値段は300~9.999.999の間でお願いします')
       end
+      it '商品価格が半角英数字混合では出品できない' do
+        @item.price = '1111aaaa'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price 半角数字を使用してください")
+      end 
+      it '商品価格が半角英字のみでは出品できない' do
+        @item.price = 'aaa'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price 半角数字を使用してください")
+      end
+      it 'userが紐付いていない商品は出品できない' do 
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
+      end    
     end
   end
-end
+end  

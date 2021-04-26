@@ -22,13 +22,8 @@ class Item < ApplicationRecord
     validates :image
     validates :description
     validates :name
-    validates :category_id
-    validates :condition_id
-    validates :shipping_cost_id
-    validates :shipping_time_id
-    validates :shipping_area_id
   end
-  with_options presence: true, numericality: { with: /\A^[0-9]+$\z/, message: '半角数字を使用してください' } do
+  with_options presence: true, numericality: { message: '半角数字を使用してください' } do
     validates :price
   end
   validates_inclusion_of :price, in: 300..9_999_999, message: '値段は300~9.999.999の間でお願いします'
