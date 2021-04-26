@@ -18,7 +18,6 @@ class Item < ApplicationRecord
     validates :shipping_area_id
   end
   with_options presence: true do
-    validates :price
     validates :image
     validates :description
     validates :name
