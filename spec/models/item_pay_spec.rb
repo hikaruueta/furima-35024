@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe ItemPay, type: :model do
   before do
-    @item_pay = FactoryBot.build(:item_pay)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
+    @item_pay = FactoryBot.build(:item_pay, user_id: @user.id , item_id: @item.id)
   end
 
   describe '商品購入' do
@@ -67,7 +69,17 @@ RSpec.describe ItemPay, type: :model do
         @item_pay.valid?
         expect(@item_pay.errors.full_messages).to include('Phone number is invalid.  Input half-width character & not hyphen(-)')
       end
+      it 'user_idがないと登録できない' do
+        @item_pay.user_id = nil
+        @item_pay.valid?
+        expect(@item_pay.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idがないと登録できない' do
+        @item_pay.item_id = nil
+        @item_pay.valid?
+        expect(@item_pay.errors.full_messages).to include("Item can't be blank")
+      end
     end
   end
 end
-"add some examples to (or delete) #{__FILE__}"
+ 

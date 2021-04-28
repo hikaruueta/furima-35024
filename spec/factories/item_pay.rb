@@ -5,7 +5,7 @@ FactoryBot.define do
     shipping_area_id                { 15 }
     city                             { '横浜市' }
     address                      { '中区' }
-    building_name                {  }
+    building_name                { '森ビル' }
     phone_number                 { '09012345678' }
 
   end
