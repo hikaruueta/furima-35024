@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_action :authenticate_user!, except: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:edit, :update, :show, :destroy]
   before_action :redirect, only: [:edit, :update]
 
@@ -54,6 +54,6 @@ class ItemsController < ApplicationController
   end
 
   def redirect
-    redirect_to root_path if current_user.id != @item.user_id
+    redirect_to root_path if current_user.id != @item.user_id || !@item.order.nil?
   end
 end
