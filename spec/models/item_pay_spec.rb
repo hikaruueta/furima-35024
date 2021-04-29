@@ -69,6 +69,11 @@ RSpec.describe ItemPay, type: :model do
         @item_pay.valid?
         expect(@item_pay.errors.full_messages).to include('Phone number is invalid.  Input half-width character & not hyphen(-)')
       end
+      it 'phone_numberは英数混合では登録できない' do
+        @item_pay.phone_number = '050318735aa'
+        @item_pay.valid?
+        expect(@item_pay.errors.full_messages).to include('Phone number is invalid.  Input half-width character & not hyphen(-)')
+      end
       it 'user_idがないと登録できない' do
         @item_pay.user_id = nil
         @item_pay.valid?
@@ -78,11 +83,6 @@ RSpec.describe ItemPay, type: :model do
         @item_pay.item_id = nil
         @item_pay.valid?
         expect(@item_pay.errors.full_messages).to include("Item can't be blank")
-      end
-      it 'phone_numberは英数混合では登録できない' do
-        @item_pay.phone_number = '050318735aa'
-        @item_pay.valid?
-        expect(@item_pay.errors.full_messages).to include('Phone number is invalid.  Input half-width character & not hyphen(-)')
       end
     end
   end
